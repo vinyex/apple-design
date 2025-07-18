@@ -1,0 +1,178 @@
+export const slsaData = [
+  {
+    id: "source-1",
+    category: "source",
+    title: "Submit unauthorized change",
+    description:
+      "An attacker submits unauthorized changes to source code by bypassing code review processes or exploiting weaknesses in access controls.",
+    attackVectors: [
+      "Compromising developer credentials",
+      "Exploiting weak branch protection rules",
+      "Bypassing code review processes",
+      "Social engineering to get changes approved",
+      "Exploiting CI/CD pipeline configuration weaknesses",
+    ],
+    mitigation: [
+      "Implement strong branch protection rules requiring code reviews",
+      "Enforce multi-factor authentication for all developers",
+      "Use signed commits to verify author identity",
+      "Implement the principle of least privilege for repository access",
+      "Audit all code changes and repository access",
+    ],
+    slsaLevel: 2,
+  },
+  {
+    id: "source-2",
+    category: "source",
+    title: "Compromise source repo",
+    description:
+      "An attacker gains unauthorized access to the source code repository, allowing them to make malicious changes to the codebase without detection.",
+    attackVectors: [
+      "Exploiting vulnerabilities in the repository hosting service",
+      "Stealing admin credentials through phishing or other means",
+      "Exploiting weak access controls or permission settings",
+      "Compromising developer workstations with access to the repository",
+      "Supply chain attacks against the repository provider",
+    ],
+    mitigation: [
+      "Implement strong access controls and authentication for repository access",
+      "Regularly audit repository permissions and access logs",
+      "Use hardware security keys for repository authentication",
+      "Enable security features provided by the repository hosting service",
+      "Implement monitoring for unusual repository activities",
+    ],
+    slsaLevel: 3,
+  },
+  {
+    id: "source-3",
+    category: "source",
+    title: "Build from modified source",
+    description:
+      "An attacker manipulates the build process to use a modified version of the source code, bypassing the integrity checks on the official repository.",
+    attackVectors: [
+      "Tampering with the source code checkout process",
+      "Exploiting build server vulnerabilities to modify source code during build",
+      "Redirecting source code references to malicious repositories",
+      "Manipulating source code during transit from repository to build environment",
+      "Exploiting race conditions in the build process",
+    ],
+    mitigation: [
+      "Implement cryptographic verification of source code integrity",
+      "Use hermetic builds that precisely specify all inputs",
+      "Implement build provenance to track the exact source code used",
+      "Secure the connection between repository and build environment",
+      "Use reproducible builds to detect discrepancies",
+    ],
+    slsaLevel: 3,
+  },
+  {
+    id: "build-1",
+    category: "build",
+    title: "Compromise build process",
+    description:
+      "An attacker gains control of the build process, allowing them to inject malicious code or backdoors during compilation or packaging.",
+    attackVectors: [
+      "Exploiting vulnerabilities in build tools or plugins",
+      "Compromising build server credentials",
+      "Injecting malicious code through build scripts",
+      "Manipulating environment variables during build",
+      "Exploiting insecure build configurations",
+    ],
+    mitigation: [
+      "Use isolated, ephemeral build environments for each build",
+      "Implement the principle of least privilege for build systems",
+      "Regularly update and patch build tools and dependencies",
+      "Verify the integrity of build tools and plugins",
+      "Implement build reproducibility to detect tampering",
+    ],
+    slsaLevel: 3,
+  },
+  {
+    id: "build-2",
+    category: "build",
+    title: "Upload modified package",
+    description:
+      "An attacker bypasses the build process entirely and directly uploads a malicious package to the package registry, masquerading as a legitimate release.",
+    attackVectors: [
+      "Stealing package publishing credentials",
+      "Exploiting weak authentication in package registries",
+      "Taking advantage of namespace confusion or typosquatting",
+      "Compromising developer accounts with publishing rights",
+      "Exploiting gaps in the continuous deployment pipeline",
+    ],
+    mitigation: [
+      "Implement strong authentication for package publishing",
+      "Use signed packages to verify authenticity",
+      "Implement automated checks for package integrity",
+      "Restrict package publishing to automated processes only",
+      "Monitor package registries for suspicious activities",
+    ],
+    slsaLevel: 4,
+  },
+  {
+    id: "build-3",
+    category: "build",
+    title: "Compromise package registry",
+    description:
+      "An attacker gains unauthorized access to the package registry, allowing them to replace legitimate packages with malicious versions or inject malicious code into existing packages.",
+    attackVectors: [
+      "Exploiting vulnerabilities in the package registry service",
+      "Stealing admin credentials for the package registry",
+      "Performing man-in-the-middle attacks during package retrieval",
+      "Exploiting weak access controls in the registry",
+      "Supply chain attacks against the registry provider",
+    ],
+    mitigation: [
+      "Use private registries with strong access controls",
+      "Implement package signing and verification",
+      "Regularly audit registry access and changes",
+      "Use checksums and integrity verification for packages",
+      "Implement monitoring for suspicious registry activities",
+    ],
+    slsaLevel: 4,
+  },
+  {
+    id: "build-4",
+    category: "build",
+    title: "Use compromised package",
+    description:
+      "An attacker tricks the build process into using a compromised package, either by compromising a legitimate package or by creating a malicious package with a similar name.",
+    attackVectors: [
+      "Typosquatting popular package names",
+      "Compromising legitimate packages through their maintainers",
+      "Exploiting dependency confusion vulnerabilities",
+      "Publishing malicious packages with higher version numbers",
+      "Exploiting transitive dependencies",
+    ],
+    mitigation: [
+      "Use lockfiles to pin exact dependency versions",
+      "Implement software composition analysis (SCA) in the build pipeline",
+      "Use private registries with vetted dependencies",
+      "Verify package integrity through checksums or signatures",
+      "Implement dependency confusion protection",
+    ],
+    slsaLevel: 3,
+  },
+  {
+    id: "dependencies-1",
+    category: "dependencies",
+    title: "Use compromised dependency",
+    description:
+      "An attacker compromises a dependency used by the application, allowing them to inject malicious code that will be executed when the dependency is used.",
+    attackVectors: [
+      "Compromising popular open-source packages",
+      "Performing supply chain attacks against dependency maintainers",
+      "Exploiting unmaintained dependencies",
+      "Injecting malicious code into dependency updates",
+      "Exploiting vulnerabilities in dependency management tools",
+    ],
+    mitigation: [
+      "Regularly scan dependencies for known vulnerabilities",
+      "Minimize the number of dependencies used",
+      "Implement a vetting process for new dependencies",
+      "Use dependency lockfiles to prevent unexpected updates",
+      "Monitor dependencies for suspicious behavior or changes",
+    ],
+    slsaLevel: 4,
+  },
+]
